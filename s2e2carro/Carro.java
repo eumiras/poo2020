@@ -9,22 +9,33 @@ public class Carro {
 	int gasolina = 0;
 	
 	void embarcar(int qtd) {
-		if(qtd + this.nPessoas > this.pessoasMax) {
+		if (qtd <0) {
+		System.out.println("non es posible");
+		return;}
+		
+		else if(qtd + this.nPessoas > this.pessoasMax) {
 		System.out.println("não vai dar não");
-		return;
-		}
+		return;}
+		
 		this.nPessoas+=qtd;
-	}
+		}
+		
+	
 	void setup(int qtd) {
 		this.pessoasMax = qtd;
 	}
 	
 	void desembarcar(int qtd) {
-		if (qtd <0)
+		if (qtd <0) {
+			System.out.println("no puedo");
 			return;
+		}
+			
 		
-		else if (this.nPessoas <qtd)
+		else if (this.nPessoas <qtd) {
+			System.out.println("mas como???? nao da");
 			return;
+		}
 		else {
 			this.nPessoas-=qtd;
 		}		
@@ -55,19 +66,15 @@ public class Carro {
 	
 	void abastecer (int lit) {
 		this.gasolina+=lit;
+		System.out.println("sinta seu dinheiro indo embora");
 	}
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Carro carro = new Carro();
 		System.out.println("--- Bem vindo!!---");
-		System.out.println("Digite o que deseja fazer:");
-		System.out.println("setup ---> informar o numero máx de pessoas que o carro comporta");
-		System.out.println("embarcar n ---> inserir passageiros");
-		System.out.println("desembarcar n ---> tirar passageiros");
-		System.out.println("show ---> status do veiculo ");
-		System.out.println("dirigir ---> ligar os motores e dar a partida yeah!! ");
-		System.out.println("abastecer ---> gastar mtos dinheiros pq é caro");
+		System.out.println("Primeiro, faça o setup");
+		System.out.println("setup n ---> informar o numero máx de pessoas que o carro comporta");
 		while(true) {
 			String line = scanner.nextLine();
 			String ui[] = line.split(" ");
@@ -100,6 +107,12 @@ public class Carro {
 			else if (ui[0].equals("setup")) {
 				int qtd = Integer.parseInt(ui[1]);
 				carro.setup(qtd);
+				System.out.println("Digite o que fazer em seguida:");
+				System.out.println("embarcar n ---> inserir passageiros");
+				System.out.println("desembarcar n ---> tirar passageiros");
+				System.out.println("show ---> status do veiculo ");
+				System.out.println("dirigir ---> ligar os motores e dar a partida yeah!! ");
+				System.out.println("abastecer ---> gastar mtos dinheiros pq é caro, porem necessario");
 			}
 			else {
 				System.out.println("---- Comando Inválido ----");
