@@ -15,7 +15,9 @@ public class Carro {
 		}
 		this.nPessoas+=qtd;
 	}
-	
+	void setup(int qtd) {
+		this.pessoasMax = qtd;
+	}
 	
 	void desembarcar(int qtd) {
 		if (qtd <0)
@@ -32,7 +34,7 @@ public class Carro {
 		System.out.println("------- Carro -------");
 		System.out.println("Nº de pessoas:"+ nPessoas);
 		System.out.println("Combustível:" + gasolina);
-		System.out.println("Kilometragem" + kmetragem);
+		System.out.println("Kilometragem:" + kmetragem);
 	}
 	
 	void dirigir(int kmt) {
@@ -58,6 +60,14 @@ public class Carro {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Carro carro = new Carro();
+		System.out.println("--- Bem vindo!!---");
+		System.out.println("Digite o que deseja fazer:");
+		System.out.println("setup ---> informar o numero máx de pessoas que o carro comporta");
+		System.out.println("embarcar n ---> inserir passageiros");
+		System.out.println("desembarcar n ---> tirar passageiros");
+		System.out.println("show ---> status do veiculo ");
+		System.out.println("dirigir ---> ligar os motores e dar a partida yeah!! ");
+		System.out.println("abastecer ---> gastar mtos dinheiros pq é caro");
 		while(true) {
 			String line = scanner.nextLine();
 			String ui[] = line.split(" ");
@@ -67,10 +77,12 @@ public class Carro {
 			else if(ui[0].equals("embarcar")) {
 				int qtd = Integer.parseInt(ui[1]);
 				carro.embarcar(qtd);
+				carro.show();
 			}
 			else if(ui[0].equals("desembarcar")) {
 				int qtd = Integer.parseInt(ui[1]);
 				carro.desembarcar(qtd);
+				carro.show();
 			}
 			else if (ui[0].equals("show")) {
 				carro.show();
@@ -78,10 +90,16 @@ public class Carro {
 			else if (ui[0].equals("dirigir")) {
 				int kmt = Integer.parseInt(ui[1]);
 				carro.dirigir(kmt);
+				carro.show();
 			}
 			else if (ui[0].equals("abastecer")) {
 				int lit = Integer.parseInt(ui[1]);
 				carro.abastecer(lit);
+				carro.show();
+			}
+			else if (ui[0].equals("setup")) {
+				int qtd = Integer.parseInt(ui[1]);
+				carro.setup(qtd);
 			}
 			else {
 				System.out.println("---- Comando Inválido ----");
